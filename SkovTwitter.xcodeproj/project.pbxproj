@@ -7,23 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5210FC562441EAB700EBF1E9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5210FC552441EAB700EBF1E9 /* Extensions.swift */; };
 		52FF7DC8243E1FC400ADB74A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DC7243E1FC400ADB74A /* AppDelegate.swift */; };
 		52FF7DCA243E1FC400ADB74A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DC9243E1FC400ADB74A /* SceneDelegate.swift */; };
 		52FF7DCC243E1FC400ADB74A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DCB243E1FC400ADB74A /* ViewController.swift */; };
 		52FF7DCF243E1FC400ADB74A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FF7DCD243E1FC400ADB74A /* Main.storyboard */; };
-		52FF7DD1243E1FC600ADB74A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FF7DD0243E1FC600ADB74A /* Assets.xcassets */; };
 		52FF7DD4243E1FC600ADB74A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52FF7DD2243E1FC600ADB74A /* LaunchScreen.storyboard */; };
+		52FF7DE5243E235200ADB74A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DE4243E235200ADB74A /* MainTabBarController.swift */; };
+		52FF7DE7243E240F00ADB74A /* FeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DE6243E240F00ADB74A /* FeedController.swift */; };
+		52FF7DE9243E241C00ADB74A /* ExploreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DE8243E241C00ADB74A /* ExploreController.swift */; };
+		52FF7DEB243E242900ADB74A /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DEA243E242900ADB74A /* NotificationsController.swift */; };
+		52FF7DED243E243800ADB74A /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DEC243E243800ADB74A /* ConversationsController.swift */; };
+		52FF7DEF243E24CB00ADB74A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52FF7DEE243E24CB00ADB74A /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5210FC552441EAB700EBF1E9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		52FF7DC4243E1FC400ADB74A /* SkovTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkovTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52FF7DC7243E1FC400ADB74A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52FF7DC9243E1FC400ADB74A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		52FF7DCB243E1FC400ADB74A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		52FF7DCE243E1FC400ADB74A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		52FF7DD0243E1FC600ADB74A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52FF7DD3243E1FC600ADB74A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52FF7DD5243E1FC600ADB74A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52FF7DE4243E235200ADB74A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		52FF7DE6243E240F00ADB74A /* FeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedController.swift; sourceTree = "<group>"; };
+		52FF7DE8243E241C00ADB74A /* ExploreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreController.swift; sourceTree = "<group>"; };
+		52FF7DEA243E242900ADB74A /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
+		52FF7DEC243E243800ADB74A /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
+		52FF7DEE243E24CB00ADB74A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Downloads/Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +68,69 @@
 		52FF7DC6243E1FC400ADB74A /* SkovTwitter */ = {
 			isa = PBXGroup;
 			children = (
+				52FF7DE3243E200D00ADB74A /* Models */,
+				52FF7DE2243E200B00ADB74A /* Views */,
+				52FF7DE1243E200300ADB74A /* ViewModels */,
+				52FF7DE0243E200200ADB74A /* Controllers */,
+				52FF7DDF243E200000ADB74A /* API */,
+				52FF7DDB243E1FF700ADB74A /* Utillities */,
 				52FF7DC7243E1FC400ADB74A /* AppDelegate.swift */,
 				52FF7DC9243E1FC400ADB74A /* SceneDelegate.swift */,
 				52FF7DCB243E1FC400ADB74A /* ViewController.swift */,
 				52FF7DCD243E1FC400ADB74A /* Main.storyboard */,
-				52FF7DD0243E1FC600ADB74A /* Assets.xcassets */,
+				52FF7DEE243E24CB00ADB74A /* Assets.xcassets */,
 				52FF7DD2243E1FC600ADB74A /* LaunchScreen.storyboard */,
 				52FF7DD5243E1FC600ADB74A /* Info.plist */,
 			);
 			path = SkovTwitter;
+			sourceTree = "<group>";
+		};
+		52FF7DDB243E1FF700ADB74A /* Utillities */ = {
+			isa = PBXGroup;
+			children = (
+				5210FC552441EAB700EBF1E9 /* Extensions.swift */,
+			);
+			path = Utillities;
+			sourceTree = "<group>";
+		};
+		52FF7DDF243E200000ADB74A /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		52FF7DE0243E200200ADB74A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				52FF7DE4243E235200ADB74A /* MainTabBarController.swift */,
+				52FF7DE6243E240F00ADB74A /* FeedController.swift */,
+				52FF7DE8243E241C00ADB74A /* ExploreController.swift */,
+				52FF7DEA243E242900ADB74A /* NotificationsController.swift */,
+				52FF7DEC243E243800ADB74A /* ConversationsController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		52FF7DE1243E200300ADB74A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		52FF7DE2243E200B00ADB74A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		52FF7DE3243E200D00ADB74A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52FF7DD4243E1FC600ADB74A /* LaunchScreen.storyboard in Resources */,
-				52FF7DD1243E1FC600ADB74A /* Assets.xcassets in Resources */,
+				52FF7DEF243E24CB00ADB74A /* Assets.xcassets in Resources */,
 				52FF7DCF243E1FC400ADB74A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,8 +205,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				52FF7DCC243E1FC400ADB74A /* ViewController.swift in Sources */,
+				5210FC562441EAB700EBF1E9 /* Extensions.swift in Sources */,
 				52FF7DC8243E1FC400ADB74A /* AppDelegate.swift in Sources */,
+				52FF7DED243E243800ADB74A /* ConversationsController.swift in Sources */,
+				52FF7DE7243E240F00ADB74A /* FeedController.swift in Sources */,
+				52FF7DE5243E235200ADB74A /* MainTabBarController.swift in Sources */,
+				52FF7DEB243E242900ADB74A /* NotificationsController.swift in Sources */,
 				52FF7DCA243E1FC400ADB74A /* SceneDelegate.swift in Sources */,
+				52FF7DE9243E241C00ADB74A /* ExploreController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
