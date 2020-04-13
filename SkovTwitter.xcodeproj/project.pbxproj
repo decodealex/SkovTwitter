@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5210FC562441EAB700EBF1E9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5210FC552441EAB700EBF1E9 /* Extensions.swift */; };
+		5210FC592441F24700EBF1E9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5210FC582441F24700EBF1E9 /* LoginController.swift */; };
+		5210FC5B2441F28800EBF1E9 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5210FC5A2441F28800EBF1E9 /* RegistrationController.swift */; };
+		52463AC124447C2100B0AFC7 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463AC024447C2100B0AFC7 /* Utilities.swift */; };
 		52FF7DC8243E1FC400ADB74A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DC7243E1FC400ADB74A /* AppDelegate.swift */; };
 		52FF7DCA243E1FC400ADB74A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DC9243E1FC400ADB74A /* SceneDelegate.swift */; };
 		52FF7DCC243E1FC400ADB74A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DCB243E1FC400ADB74A /* ViewController.swift */; };
@@ -23,6 +26,9 @@
 
 /* Begin PBXFileReference section */
 		5210FC552441EAB700EBF1E9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5210FC582441F24700EBF1E9 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		5210FC5A2441F28800EBF1E9 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		52463AC024447C2100B0AFC7 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		52FF7DC4243E1FC400ADB74A /* SkovTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkovTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52FF7DC7243E1FC400ADB74A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52FF7DC9243E1FC400ADB74A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +55,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5210FC572441F21B00EBF1E9 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				5210FC582441F24700EBF1E9 /* LoginController.swift */,
+				5210FC5A2441F28800EBF1E9 /* RegistrationController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		52463ABF2444701700B0AFC7 /* CustonViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustonViews;
+			sourceTree = "<group>";
+		};
 		52FF7DBB243E1FC400ADB74A = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				5210FC552441EAB700EBF1E9 /* Extensions.swift */,
+				52463AC024447C2100B0AFC7 /* Utilities.swift */,
 			);
 			path = Utillities;
 			sourceTree = "<group>";
@@ -103,6 +126,7 @@
 		52FF7DE0243E200200ADB74A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5210FC572441F21B00EBF1E9 /* Authentication */,
 				52FF7DE4243E235200ADB74A /* MainTabBarController.swift */,
 				52FF7DE6243E240F00ADB74A /* FeedController.swift */,
 				52FF7DE8243E241C00ADB74A /* ExploreController.swift */,
@@ -122,6 +146,7 @@
 		52FF7DE2243E200B00ADB74A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				52463ABF2444701700B0AFC7 /* CustonViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -210,9 +235,12 @@
 				52FF7DED243E243800ADB74A /* ConversationsController.swift in Sources */,
 				52FF7DE7243E240F00ADB74A /* FeedController.swift in Sources */,
 				52FF7DE5243E235200ADB74A /* MainTabBarController.swift in Sources */,
+				52463AC124447C2100B0AFC7 /* Utilities.swift in Sources */,
+				5210FC5B2441F28800EBF1E9 /* RegistrationController.swift in Sources */,
 				52FF7DEB243E242900ADB74A /* NotificationsController.swift in Sources */,
 				52FF7DCA243E1FC400ADB74A /* SceneDelegate.swift in Sources */,
 				52FF7DE9243E241C00ADB74A /* ExploreController.swift in Sources */,
+				5210FC592441F24700EBF1E9 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
