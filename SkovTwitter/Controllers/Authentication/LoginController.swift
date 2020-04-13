@@ -11,6 +11,7 @@ import UIKit
 class LoginController: UIViewController {
     
     // MARK: - Properties
+    
     private let logoImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -28,7 +29,7 @@ class LoginController: UIViewController {
         let view = Utilities.inputContainerView(withImage: #imageLiteral(resourceName: "ic_lock_outline_white_2x"), textfield: self.passwordTextfield)
         return view
     }()
-
+    
     private let emailTextfield: UITextField = {
         let tf = Utilities.textField(withPlaceholder: "Email")
         return tf
@@ -71,11 +72,12 @@ class LoginController: UIViewController {
     //MARK: - Selectors
     
     @objc func hadleLogin() {
-        print("hadleLogin tapped")
+
     }
     
     @objc func handleShowSignUp() {
-        print("handleShowSignUp tapped")
+        let controller = RegistrationController()
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     // MARK: - Helpers
@@ -118,5 +120,5 @@ class LoginController: UIViewController {
         dontHaveAccountButton.anchor(left: view.leftAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor,
                                      right: view.rightAnchor, paddingLeft: 40, paddingRight: 40)
     }
-
+    
 }
