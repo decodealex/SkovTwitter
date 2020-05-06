@@ -72,7 +72,28 @@ class LoginController: UIViewController {
     //MARK: - Selectors
     
     @objc func hadleLogin() {
-
+        guard let email = emailTextfield.text, !email.isEmpty else {
+            print("❗️DEBUG: Email cant be empty")
+            return
+        }
+        guard let password = passwordTextfield.text, !password.isEmpty else {
+            print("❗️DEBUG: passwordTextfield cant be empty")
+            return
+        }
+        
+        AuthService.shared.logUserIn(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                print("❗️DEBUG: Cant log in error is \(error.localizedDescription)")
+                return
+            }
+            print("✅ DEBUG: LogIn successful")
+            
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow}) else { return }
+            
+            guard let tab = window.rootViewController as? MainTabBarController else { return }
+            tab.authenticateUserAndConfigureUI()
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func handleShowSignUp() {

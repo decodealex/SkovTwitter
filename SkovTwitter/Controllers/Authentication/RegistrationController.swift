@@ -8,12 +8,14 @@
 
 
 import UIKit
+import Firebase
 
 class RegistrationController: UIViewController {
     
     // MARK: - Properties
     
     private let imagePicker = UIImagePickerController()
+    private var profileImage: UIImage?
     
     private let addPhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -101,7 +103,39 @@ class RegistrationController: UIViewController {
     }
     
     @objc func hadleSignUp() {
+        guard let email = emailTextfield.text, !email.isEmpty else {
+            print("❗️DEBUG: Email cant be empty")
+            return
+        }
+        guard let password = passwordTextfield.text, !password.isEmpty else {
+            print("❗️DEBUG: passwordTextfield cant be empty")
+            return
+        }
+        guard let fullName = fullNameTextfield.text, !fullName.isEmpty else {
+            print("❗️DEBUG: fullNameTextfield cant be empty")
+            return
+        }
+        guard let username = userNameTextfield.text, !username.isEmpty else {
+            print("❗️DEBUG: userNameTextfield cant be empty")
+            return
+        }
+        guard let profileImage = profileImage else {
+            print("❗️DEBUG: profileImage cant be empty")
+            return
+        }
         
+        let credentials = AuthCredentials(email: email, password: password, fullName: fullName,
+                                          username: username, profileImage: profileImage)
+        
+        AuthService.shared.registerUser(credentials: credentials) { (error, ref) in
+            print("✅ DEBUG: SignUp successful")
+            
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow}) else { return }
+            
+            guard let tab = window.rootViewController as? MainTabBarController else { return }
+            tab.authenticateUserAndConfigureUI()
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func handleShowLogin() {
@@ -141,10 +175,10 @@ class RegistrationController: UIViewController {
     }
     
     private func configureAddPhotoButton() {
-          view.addSubview(addPhotoButton)
-          addPhotoButton.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor)
-          addPhotoButton.setDimensions(width: 128, height: 128)
-      }
+        view.addSubview(addPhotoButton)
+        addPhotoButton.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor)
+        addPhotoButton.setDimensions(width: 128, height: 128)
+    }
     
     private func configureImagePicker() {
         imagePicker.delegate = self
@@ -158,6 +192,8 @@ class RegistrationController: UIViewController {
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let profileImage = info[.editedImage] as? UIImage else { return }
+        self.profileImage = profileImage
+        
         addPhotoButton.layer.cornerRadius = 128 / 2
         addPhotoButton.layer.masksToBounds = true
         addPhotoButton.imageView?.contentMode = .scaleAspectFill

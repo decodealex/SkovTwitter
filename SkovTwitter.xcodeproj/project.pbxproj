@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,8 @@
 		5210FC5B2441F28800EBF1E9 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5210FC5A2441F28800EBF1E9 /* RegistrationController.swift */; };
 		521B67622461571800370312 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 521B67612461571700370312 /* GoogleService-Info.plist */; };
 		52463AC124447C2100B0AFC7 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463AC024447C2100B0AFC7 /* Utilities.swift */; };
+		525727B02462E28400A22DE6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525727AF2462E28400A22DE6 /* Constants.swift */; };
+		525727B22462E9CF00A22DE6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525727B12462E9CF00A22DE6 /* AuthService.swift */; };
 		52FF7DC8243E1FC400ADB74A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DC7243E1FC400ADB74A /* AppDelegate.swift */; };
 		52FF7DCA243E1FC400ADB74A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DC9243E1FC400ADB74A /* SceneDelegate.swift */; };
 		52FF7DCC243E1FC400ADB74A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DCB243E1FC400ADB74A /* ViewController.swift */; };
@@ -33,6 +35,8 @@
 		5210FC5A2441F28800EBF1E9 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		521B67612461571700370312 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52463AC024447C2100B0AFC7 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		525727AF2462E28400A22DE6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		525727B12462E9CF00A22DE6 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		52FF7DC4243E1FC400ADB74A /* SkovTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkovTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52FF7DC7243E1FC400ADB74A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52FF7DC9243E1FC400ADB74A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 			children = (
 				5210FC552441EAB700EBF1E9 /* Extensions.swift */,
 				52463AC024447C2100B0AFC7 /* Utilities.swift */,
+				525727AF2462E28400A22DE6 /* Constants.swift */,
 			);
 			path = Utillities;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 		52FF7DDF243E200000ADB74A /* API */ = {
 			isa = PBXGroup;
 			children = (
+				525727B12462E9CF00A22DE6 /* AuthService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -174,7 +180,6 @@
 				F6A6D5CC63B63588E635A442 /* Pods-SkovTwitter.debug.xcconfig */,
 				315B20F533F6C27A841BCEEF /* Pods-SkovTwitter.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -309,11 +314,13 @@
 				52FF7DE7243E240F00ADB74A /* FeedController.swift in Sources */,
 				52FF7DE5243E235200ADB74A /* MainTabBarController.swift in Sources */,
 				52463AC124447C2100B0AFC7 /* Utilities.swift in Sources */,
+				525727B02462E28400A22DE6 /* Constants.swift in Sources */,
 				5210FC5B2441F28800EBF1E9 /* RegistrationController.swift in Sources */,
 				52FF7DEB243E242900ADB74A /* NotificationsController.swift in Sources */,
 				52FF7DCA243E1FC400ADB74A /* SceneDelegate.swift in Sources */,
 				52FF7DE9243E241C00ADB74A /* ExploreController.swift in Sources */,
 				5210FC592441F24700EBF1E9 /* LoginController.swift in Sources */,
+				525727B22462E9CF00A22DE6 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
