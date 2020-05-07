@@ -11,5 +11,6 @@ target 'SkovTwitter' do
 	pod 'Firebase/Auth'
 	pod 'Firebase/Database'
 	pod 'Firebase/Storage'
+	pod 'SDWebImage', '~> 5.0'
 
 end
