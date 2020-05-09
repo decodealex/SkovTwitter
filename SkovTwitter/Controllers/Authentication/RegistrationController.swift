@@ -96,7 +96,7 @@ class RegistrationController: UIViewController {
         configureUI()
     }
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     
     @objc func handleAddPhotoButton() {
         present(imagePicker, animated: true, completion: nil)
@@ -115,7 +115,7 @@ class RegistrationController: UIViewController {
             print("❗️DEBUG: fullNameTextfield cant be empty")
             return
         }
-        guard let username = userNameTextfield.text, !username.isEmpty else {
+        guard let username = userNameTextfield.text?.lowercased(), !username.isEmpty else {
             print("❗️DEBUG: userNameTextfield cant be empty")
             return
         }
@@ -187,7 +187,7 @@ class RegistrationController: UIViewController {
     
 }
 
-//MARK: - UIImagePickerControllerDelegate
+// MARK: - UIImagePickerControllerDelegate
 
 extension RegistrationController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

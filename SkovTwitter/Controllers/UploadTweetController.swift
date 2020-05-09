@@ -11,7 +11,7 @@ import SDWebImage
 
 class UploadTweetController: UIViewController {
     
-    //MARK: - Properties
+    // MARK: - Properties
     
     private let user: User
     
@@ -44,7 +44,7 @@ class UploadTweetController: UIViewController {
     
     private let captionTextView = CaptionTextView()
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     init(user: User) {
         self.user = user
@@ -62,9 +62,9 @@ class UploadTweetController: UIViewController {
         configureUI()
     }
     
-    //MARK: - API
+    // MARK: - API
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     
     @objc func handleCancel() {
         dismiss(animated: true, completion: nil)
@@ -81,7 +81,7 @@ class UploadTweetController: UIViewController {
         }
     }
     
-    //MARK: - Helpers
+    // MARK: - Helpers
     
     func configureUI() {
         view.backgroundColor = .white

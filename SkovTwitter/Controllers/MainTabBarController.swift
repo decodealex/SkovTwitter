@@ -11,7 +11,7 @@ import Firebase
 
 class MainTabBarController: UITabBarController {
 
-    //MARK: - Properties
+    // MARK: - Properties
     
     var user: User? {
         didSet {
@@ -30,7 +30,7 @@ class MainTabBarController: UITabBarController {
         return button
     }()
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +39,11 @@ class MainTabBarController: UITabBarController {
         authenticateUserAndConfigureUI()
     }
     
-    //MARK: - API
+    // MARK: - API
     
     func fetchUser() {
-        UserService.shared.fetchUser { user in
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        UserService.shared.fetchUser(uid: uid) { user in
             self.user = user
         }
     }
@@ -71,7 +72,7 @@ class MainTabBarController: UITabBarController {
         }
     }
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     
     @objc func actionButtonTapped() {
         guard let user = user else { return }
@@ -80,7 +81,7 @@ class MainTabBarController: UITabBarController {
         present(nav, animated: true, completion: nil)
     }
     
-    //MARK: - Helpers
+    // MARK: - Helpers
     
     func configureUI() {
         view.addSubview(actionButton)
@@ -90,7 +91,7 @@ class MainTabBarController: UITabBarController {
     
     func configureViewControllers() {
         
-        let feedVC = FeedController()
+        let feedVC = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
         let feedNavigationController = templateNavigationController(rootViewController: feedVC, image: UIImage(named: "home_unselected")!, title: "")
         
         let exploreVC = ExploreController()

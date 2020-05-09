@@ -69,7 +69,7 @@ class LoginController: UIViewController {
         configureUI()
     }
     
-    //MARK: - Selectors
+    // MARK: - Selectors
     
     @objc func hadleLogin() {
         guard let email = emailTextfield.text, !email.isEmpty else {

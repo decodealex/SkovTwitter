@@ -7,12 +7,12 @@
 //
 
 
-//MARK: - Properties
+// MARK: - Properties
 
-//MARK: - Lifecycle
+// MARK: - Lifecycle
 
-//MARK: - API
+// MARK: - API
 
-//MARK: - Selectors
+// MARK: - Selectors
 
-//MARK: - Helpers
+// MARK: - Helpers

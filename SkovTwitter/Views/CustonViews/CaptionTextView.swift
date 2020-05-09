@@ -10,7 +10,7 @@ import UIKit
 
 class CaptionTextView: UITextView {
     
-  //MARK: - Properties
+  // MARK: - Properties
     
     let placeholderLabel: UILabel = {
         let label = UILabel()
@@ -21,7 +21,7 @@ class CaptionTextView: UITextView {
         return label
     }()
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
