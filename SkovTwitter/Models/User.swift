@@ -7,13 +7,21 @@
 //
 
 import Foundation
+import Firebase
 
 struct User {
+    
+    // MARK: - Properties
+    
     let fullName: String
     let email: String
     let username: String
     var profileImageURL: URL?
     let uid: String
+    
+    var isCurrentUser: Bool { return Auth.auth().currentUser?.uid == uid }
+    
+    // MARK: - Lifecycle
     
     init(uid: String ,dictionary: [String: AnyObject]) {
         self.uid = uid
@@ -27,4 +35,11 @@ struct User {
             self.profileImageURL = url
         }
     }
+    
+    // MARK: - API
+    
+    // MARK: - Selectors
+    
+    // MARK: - Helpers
+
 }
