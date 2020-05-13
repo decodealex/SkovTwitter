@@ -28,6 +28,7 @@
 		52827C97246C1D11004F4BD0 /* ProfileFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52827C96246C1D11004F4BD0 /* ProfileFilterView.swift */; };
 		52827C99246C2015004F4BD0 /* ProfileFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52827C98246C2015004F4BD0 /* ProfileFilterCell.swift */; };
 		52827C9B246C2F38004F4BD0 /* ProfileHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52827C9A246C2F38004F4BD0 /* ProfileHeaderViewModel.swift */; };
+		52827C9D246C5794004F4BD0 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52827C9C246C5794004F4BD0 /* UserCell.swift */; };
 		52FF7DC8243E1FC400ADB74A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DC7243E1FC400ADB74A /* AppDelegate.swift */; };
 		52FF7DCA243E1FC400ADB74A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DC9243E1FC400ADB74A /* SceneDelegate.swift */; };
 		52FF7DCC243E1FC400ADB74A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FF7DCB243E1FC400ADB74A /* ViewController.swift */; };
@@ -65,6 +66,7 @@
 		52827C96246C1D11004F4BD0 /* ProfileFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterView.swift; sourceTree = "<group>"; };
 		52827C98246C2015004F4BD0 /* ProfileFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilterCell.swift; sourceTree = "<group>"; };
 		52827C9A246C2F38004F4BD0 /* ProfileHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderViewModel.swift; sourceTree = "<group>"; };
+		52827C9C246C5794004F4BD0 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		52FF7DC4243E1FC400ADB74A /* SkovTwitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkovTwitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52FF7DC7243E1FC400ADB74A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52FF7DC9243E1FC400ADB74A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			children = (
 				523466122465736E0091EF14 /* TweetCell.swift */,
 				52827C98246C2015004F4BD0 /* ProfileFilterCell.swift */,
+				52827C9C246C5794004F4BD0 /* UserCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				52463AC124447C2100B0AFC7 /* Utilities.swift in Sources */,
 				525727B02462E28400A22DE6 /* Constants.swift in Sources */,
 				5210FC5B2441F28800EBF1E9 /* RegistrationController.swift in Sources */,
+				52827C9D246C5794004F4BD0 /* UserCell.swift in Sources */,
 				52FF7DEB243E242900ADB74A /* NotificationsController.swift in Sources */,
 				523466132465736E0091EF14 /* TweetCell.swift in Sources */,
 				52FF7DCA243E1FC400ADB74A /* SceneDelegate.swift in Sources */,
