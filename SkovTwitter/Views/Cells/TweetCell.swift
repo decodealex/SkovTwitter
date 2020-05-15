@@ -98,13 +98,13 @@ class TweetCell: UICollectionViewCell {
         
         addSubview(profileImageView)
         profileImageView.anchor(top: topAnchor, left: leftAnchor,
-                                paddingTop: 8, paddingLeft: 10)
+                                paddingTop: 8, paddingLeft: 16)
         let stack = UIStackView(arrangedSubviews: [infoLabel, captionLabel])
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.spacing = 4
         addSubview(stack)
-        stack.anchor(top: topAnchor, left: profileImageView.rightAnchor, right: rightAnchor, paddingTop: 6, paddingLeft: 12, paddingRight: 12)
+        stack.anchor(top: topAnchor, left: profileImageView.rightAnchor, right: rightAnchor, paddingTop: 6, paddingLeft: 10, paddingRight: 12)
         
         infoLabel.font = UIFont.systemFont(ofSize: 15)
         
@@ -153,7 +153,7 @@ class TweetCell: UICollectionViewCell {
     
     func configure() {
         guard let tweet = tweet else { return }
-        let viewModel = TweetViewModel(tweet: tweet, user: tweet.user)
+        let viewModel = TweetViewModel(tweet: tweet)
             
         profileImageView.sd_setImage(with: viewModel.profileImageURL, completed: nil)
         captionLabel.text = viewModel.tweet.caption

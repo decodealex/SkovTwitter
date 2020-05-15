@@ -23,6 +23,17 @@ struct TweetViewModel {
         return formatter.string(from: tweet.timestamp, to: now) ?? ""
     }
     
+    var headerTimestamp: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a・MM.dd.yyyy"
+        
+        return formatter.string(from: tweet.timestamp)
+    }
+    
+    var username : String {
+        return "@\(user.username)"
+    }
+    
     var userInfoText: NSAttributedString {
         let title = NSMutableAttributedString(string: user.fullName, attributes: [.font: UIFont.boldSystemFont(ofSize: 15) ])
         title.append(NSAttributedString(string: " @\(user.username) ・\(timestamp)", attributes: [.font: UIFont.systemFont(ofSize: 15),
@@ -31,8 +42,34 @@ struct TweetViewModel {
         return title
     }
     
-    init(tweet: Tweet, user: User) {
+    var retweetsAttributedString: NSAttributedString? {
+        return attributedText(withValue: tweet.retweetCount, text: "Retweets")
+    }
+    
+    var likesAttributedString: NSAttributedString? {
+        return attributedText(withValue: tweet.likes, text: "Likes")
+    }
+    
+    init(tweet: Tweet) {
         self.tweet = tweet
-        self.user = user
+        self.user = tweet.user
+    }
+    
+    private func attributedText(withValue value: Int, text: String) -> NSAttributedString {
+          let attributedTitle = NSMutableAttributedString(string: "\(value)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
+          attributedTitle.append(NSAttributedString(string: " \(text)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+          
+          return attributedTitle
+      }
+    
+    func size(forWidth width: CGFloat) -> CGSize {
+        let measurementLabel = UILabel()
+        measurementLabel.text = tweet.caption
+        measurementLabel.numberOfLines = 0
+        measurementLabel.lineBreakMode = .byWordWrapping
+        measurementLabel.translatesAutoresizingMaskIntoConstraints = false
+        measurementLabel.widthAnchor.constraint(equalToConstant: width).isActive = true
+        
+        return measurementLabel.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
     }
 }

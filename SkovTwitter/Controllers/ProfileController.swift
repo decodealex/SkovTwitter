@@ -124,6 +124,8 @@ extension ProfileController {
     }
 }
 
+// MARK: - ProfileHeaderDelegate
+
 extension ProfileController: ProfileHeaderDelegate {
     func handleEditProfileFollow(_ header: ProfileHeader) {
         guard !user.isCurrentUser else { return }
