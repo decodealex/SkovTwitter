@@ -153,10 +153,11 @@ class TweetHeader: UICollectionReusableView {
         
         let nameStack = UIStackView(arrangedSubviews: [fullNameLabel, usernameLabel])
         nameStack.axis = .vertical
-        nameStack.spacing = -6
+        nameStack.spacing = 2
         
         let imageNameStack = UIStackView(arrangedSubviews: [profileImageView, nameStack])
         imageNameStack.spacing = 10
+        imageNameStack.alignment = .center
         
         addSubview(imageNameStack)
         imageNameStack.anchor(top: topAnchor, left: leftAnchor,

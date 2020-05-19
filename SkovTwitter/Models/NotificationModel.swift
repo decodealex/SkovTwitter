@@ -1,5 +1,5 @@
 //
-//  Notification.swift
+//  NotificationModel.swift
 //  SkovTwitter
 //
 //  Created by Oleksandr Kovalyshyn on 19.05.2020.
@@ -16,7 +16,7 @@ enum NotificationType: Int {
     case mention
 }
 
-struct Notification {
+struct NotificationModel {
     
     // MARK: - Properties
     
@@ -28,9 +28,8 @@ struct Notification {
     
     // MARK: - Lifecycle
     
-    init(user: User, tweet: Tweet?, dictionary: [String: AnyObject]) {
+    init(user: User, dictionary: [String: AnyObject]) {
         self.user = user
-        self.tweet = tweet
         
         self.tweetID = dictionary["tweetID"] as? String ?? ""
         
