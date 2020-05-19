@@ -38,16 +38,24 @@ struct NotificationViewModel {
     var notificationText: NSAttributedString? {
         guard let timestamp = timestamp else { return nil }
     
-        let title = NSMutableAttributedString(string: "@\(user.username)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)])
+        let title = NSMutableAttributedString(string: "@\(user.username)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)])
         
-        title.append(NSAttributedString(string: notificationMessage, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)]))
-        title.append(NSAttributedString(string: " \(timestamp)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
+        title.append(NSAttributedString(string: notificationMessage, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]))
+        title.append(NSAttributedString(string: " \(timestamp)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12), NSAttributedString.Key.foregroundColor: UIColor.lightGray]))
         
         return title
     }
     
     var profileImageURL: URL? {
         return user.profileImageURL
+    }
+    
+    var shouldHideFollowButton: Bool {
+        return type != .follow
+    }
+    
+    var followButtonText: String {
+        return user.isFollowed ? "Following" : "Follow"
     }
     
     // MARK: - Lifecycle

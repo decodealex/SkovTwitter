@@ -38,9 +38,30 @@ class NotificationsController: UITableViewController {
     // MARK: - API
     
     func fetchNotifications() {
+        refreshControl?.beginRefreshing()
         NotificationService.shared.fetchNotifications { notifications in
+            self.refreshControl?.endRefreshing()
             self.notifications = notifications
+            self.checkIfUserIsFollowed(notifications: notifications)
         }
+    }
+    
+    func checkIfUserIsFollowed(notifications: [NotificationModel]) {
+        for (index, notification) in notifications.enumerated() {
+            if case .follow = notification.type {
+                let user = notification.user
+                
+                UserService.shared.checkIfUserIsFollowed(uid: user.uid) { isFollowed in
+                    self.notifications[index].user.isFollowed = isFollowed
+                }
+            }
+        }
+    }
+    
+    // MARK: - Selectors
+    
+    @objc func handleRefresh() {
+        fetchNotifications()
     }
     
     // MARK: - Helpers
@@ -52,6 +73,10 @@ class NotificationsController: UITableViewController {
         tableView.register(NotificationCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.rowHeight = 60
         tableView.separatorStyle = .none
+        
+        let refreshControl = UIRefreshControl()
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
     
 }
@@ -94,5 +119,23 @@ extension NotificationsController: NotificationCellDelegate {
         
         let controller = ProfileController(user: user)
         navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func didTapFollowButton(_ cell: NotificationCell) {
+        guard var user = cell.notification?.user else { return }
+        
+        if user.isFollowed  {
+            UserService.shared.unfollowUser(uid: user.uid) { ref, error in
+                cell.notification?.user.isFollowed = false
+                print("✅ DEBUG: User unfollowed")
+            }
+        } else {
+            UserService.shared.followUser(uid: user.uid) { ref, error in
+                cell.notification?.user.isFollowed = true
+                NotificationService.shared.uploadNotification(type: .follow, user: cell.notification?.user)
+                print("✅ DEBUG: User followed")
+            }
+        }
+        
     }
 }
