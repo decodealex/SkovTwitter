@@ -6,7 +6,7 @@
 //  Copyright © 2020 Oleksandr Kovalyshyn. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 enum NotificationType: Int {
     case follow
