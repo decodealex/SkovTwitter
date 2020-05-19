@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol NotificationCellDelegate: class {
+    func didTapProfileImage(_ cell: NotificationCell)
+    
+}
+
 class NotificationCell: UITableViewCell {
     
     // MARK: - Properties
@@ -15,6 +20,8 @@ class NotificationCell: UITableViewCell {
     var notification: NotificationModel? {
         didSet { configure() }
     }
+    
+    weak var delegate: NotificationCellDelegate?
     
     private lazy var profileImageView: UIImageView = {
         let iv = UIImageView()
@@ -65,8 +72,7 @@ class NotificationCell: UITableViewCell {
     // MARK: - Selectors
     
     @objc func handleProfileImageTapped() {
-//        delegate?.handleProfileImageTapped(self)
-        print("🎁")
+        delegate?.didTapProfileImage(self)
     }
     
     
