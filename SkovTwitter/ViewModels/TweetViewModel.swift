@@ -10,6 +10,8 @@ import UIKit
 
 struct TweetViewModel {
     
+    // MARK: - Properties
+    
     let tweet: Tweet
     let user: User
     
@@ -37,7 +39,7 @@ struct TweetViewModel {
     var userInfoText: NSAttributedString {
         let title = NSMutableAttributedString(string: user.fullName, attributes: [.font: UIFont.boldSystemFont(ofSize: 15) ])
         title.append(NSAttributedString(string: " @\(user.username) ・\(timestamp)", attributes: [.font: UIFont.systemFont(ofSize: 15),
-                                                                                   .foregroundColor: UIColor.lightGray]))
+                                                                                                   .foregroundColor: UIColor.lightGray]))
         
         return title
     }
@@ -59,17 +61,30 @@ struct TweetViewModel {
         return UIImage(named: imageName)!
     }
     
+    var shouldHideReplyLabel: Bool {
+        return !tweet.isReply
+    }
+    
+    var replyLabelText: String? {
+        guard let username = tweet.replyingTo else { return nil }
+        return "→ replying to @\(username)"
+    }
+    
+    // MARK: - Lifecycle
+    
     init(tweet: Tweet) {
         self.tweet = tweet
         self.user = tweet.user
     }
     
+    // MARK: - Helpers
+    
     private func attributedText(withValue value: Int, text: String) -> NSAttributedString {
-          let attributedTitle = NSMutableAttributedString(string: "\(value)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
-          attributedTitle.append(NSAttributedString(string: " \(text)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.gray]))
-          
-          return attributedTitle
-      }
+        let attributedTitle = NSMutableAttributedString(string: "\(value)", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
+        attributedTitle.append(NSAttributedString(string: " \(text)", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+        
+        return attributedTitle
+    }
     
     func size(forWidth width: CGFloat) -> CGSize {
         let measurementLabel = UILabel()

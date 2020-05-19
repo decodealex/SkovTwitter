@@ -145,6 +145,14 @@ class TweetHeader: UICollectionReusableView {
         return divider
     }()
     
+    private let replyLabel: UILabel = {
+           let label = UILabel()
+           label.textColor = .lightGray
+           label.font = .systemFont(ofSize: 13)
+           
+           return label
+       }()
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -159,8 +167,13 @@ class TweetHeader: UICollectionReusableView {
         imageNameStack.spacing = 10
         imageNameStack.alignment = .center
         
-        addSubview(imageNameStack)
-        imageNameStack.anchor(top: topAnchor, left: leftAnchor,
+        let stack = UIStackView(arrangedSubviews: [replyLabel, imageNameStack])
+        stack.axis = .vertical
+        stack.spacing = 8
+        stack.distribution = .fillProportionally
+        
+        addSubview(stack)
+        stack.anchor(top: topAnchor, left: leftAnchor,
                               paddingTop: 16, paddingLeft: 16)
         
         addSubview(captionLabel)
@@ -223,15 +236,6 @@ class TweetHeader: UICollectionReusableView {
     
     // MARK: - Helpers
     
-    func createButton(withImageName imageName: String) -> UIButton {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(named: imageName), for: .normal)
-        button.tintColor = .darkGray
-        button.setDimensions(width: 20, height: 20)
-        
-        return button
-    }
-    
     func configure() {
         guard let tweet = tweet else { return }
         let viewModel = TweetViewModel(tweet: tweet)
@@ -245,5 +249,17 @@ class TweetHeader: UICollectionReusableView {
         likesLabel.attributedText = viewModel.likesAttributedString
         likeButton.setImage(viewModel.likeButtonImage, for: .normal)
         likeButton.tintColor = viewModel.likeButtonTintColor
+        
+        replyLabel.isHidden = viewModel.shouldHideReplyLabel
+        replyLabel.text = viewModel.replyLabelText
+    }
+    
+    func createButton(withImageName imageName: String) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: imageName), for: .normal)
+        button.tintColor = .darkGray
+        button.setDimensions(width: 20, height: 20)
+        
+        return button
     }
 }
