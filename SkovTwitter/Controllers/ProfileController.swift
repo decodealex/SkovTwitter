@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import SDWebImage
 
 private let reuseIdentifier = "TweetCell"
@@ -25,6 +26,8 @@ class ProfileController: UICollectionViewController {
     private var tweets = [Tweet]()
     private var likedTweets = [Tweet]()
     private var replies = [Tweet]()
+    
+    weak var delegate: EditProfileControllerDelegate?
     
     private var currentDataSource: [Tweet] {
         switch selectedFilter {
@@ -183,6 +186,7 @@ extension ProfileController: ProfileHeaderDelegate {
         
         if user.isCurrentUser {
             let controller = EditProfileController(user: user)
+            controller.delegate = self
             let nav = UINavigationController(rootViewController: controller)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
@@ -211,3 +215,15 @@ extension ProfileController: ProfileHeaderDelegate {
 
 }
 
+extension ProfileController: EditProfileControllerDelegate {
+    func handleLogout() {
+        do {
+            try Auth.auth().signOut()
+            let nav = UINavigationController(rootViewController: LoginController())
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true, completion: nil)
+        } catch let error {
+            print("❗️DEBUG: Failed to signOut with error \(error.localizedDescription)")
+        }
+    }
+}
