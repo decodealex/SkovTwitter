@@ -20,6 +20,7 @@ struct User {
     let uid: String
     var isFollowed = false
     var stats: UserRelationStats?
+    var bio: String?
     
     var isCurrentUser: Bool { return Auth.auth().currentUser?.uid == uid }
     
@@ -28,9 +29,13 @@ struct User {
     init(uid: String, dictionary: [String: AnyObject]) {
         self.uid = uid
         
-        self.fullName = dictionary["fullName"] as? String ?? "N/A"
-        self.email = dictionary["email"] as? String ?? "N/A"
-        self.username = dictionary["username"] as? String ?? "N/A"
+        self.fullName = dictionary["fullName"] as? String ?? ""
+        self.email = dictionary["email"] as? String ?? ""
+        self.username = dictionary["username"] as? String ?? ""
+        
+        if let bio = dictionary["bio"] as? String {
+            self.bio = bio
+        }
         
         if let profileImageURLString = dictionary["profileImageURL"] as? String {
             guard let url = URL(string: profileImageURLString) else { return }

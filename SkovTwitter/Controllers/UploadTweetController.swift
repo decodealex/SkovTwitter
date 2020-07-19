@@ -79,6 +79,26 @@ class UploadTweetController: UIViewController {
     
     // MARK: - API
     
+    fileprivate func uploadMentionNotification(forCaption caption: String, tweetID: String?) {
+        guard caption.contains("@") else { return }
+        
+        let words = caption.components(separatedBy: .whitespacesAndNewlines)
+        
+        words.forEach { word in
+            guard word.hasPrefix("@") else { return }
+            print("❗️DEBUG: word.hasPrefix = \(word.hasPrefix("@"))")
+            var username = word.trimmingCharacters(in: .symbols)
+            username = username.trimmingCharacters(in: .punctuationCharacters)
+            
+            UserService.shared.fetchUser(withUsername: username) { mentionedUser in
+                NotificationService.shared.uploadNotification(toUser: mentionedUser,
+                                                              type: .mention,
+                                                              tweetID: tweetID)
+                print("❗️DEBUG: uploadNotification")
+            }
+        }
+    }
+    
     // MARK: - Selectors
     
     @objc func handleCancel() {
@@ -87,18 +107,24 @@ class UploadTweetController: UIViewController {
     
     @objc func handleUploadTweet() {
         guard let caption = captionTextView.text else { return }
+        
         TweetService.shared.uploadTweet(caption: caption, type: config) { (error, ref) in
             if let error = error {
-                print("❗️DEBUG: Cant upload tweet to database. Error is : \(error)")
+                print("❗️DEBUG: Failed upload tweet to database. Error is : \(error)")
             }
             
             if case .reply(let tweet) = self.config {
-                NotificationService.shared.uploadNotification(type: .reply, tweet: tweet)
+                NotificationService.shared.uploadNotification(toUser: tweet.user,
+                                                              type: .reply,
+                                                              tweetID: tweet.tweetID)
             }
+            
+            self.uploadMentionNotification(forCaption: caption, tweetID: ref.key)
             
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
     
     // MARK: - Helpers
     

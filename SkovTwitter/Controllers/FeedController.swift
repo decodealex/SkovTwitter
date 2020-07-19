@@ -138,8 +138,8 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
 extension FeedController: TweetCellDelegate {
     
     func handleFetchUser(withUsername username: String) {
-        UserService.shared.fetchUser(withUsername: username) { [weak self] user in
-            guard let self = self else { return }
+        UserService.shared.fetchUser(withUsername: username) { user in
+//            guard let self = self else { return }
             let controller = ProfileController(user: user)
             self.navigationController?.pushViewController(controller, animated: true)
         }
@@ -154,7 +154,9 @@ extension FeedController: TweetCellDelegate {
             cell.tweet?.likes = likes
             
             guard !tweet.didLike else { return }
-            NotificationService.shared.uploadNotification(type: .like, tweet: tweet)
+            NotificationService.shared.uploadNotification(toUser: tweet.user,
+                                                          type: .like,
+                                                          tweetID: tweet.tweetID)
         }
     }
     

@@ -122,7 +122,7 @@ extension NotificationsController: NotificationCellDelegate {
     }
     
     func didTapFollowButton(_ cell: NotificationCell) {
-        guard var user = cell.notification?.user else { return }
+        guard let user = cell.notification?.user else { return }
         
         if user.isFollowed  {
             UserService.shared.unfollowUser(uid: user.uid) { ref, error in
@@ -131,8 +131,9 @@ extension NotificationsController: NotificationCellDelegate {
             }
         } else {
             UserService.shared.followUser(uid: user.uid) { ref, error in
+                guard let user = cell.notification?.user else { return }
                 cell.notification?.user.isFollowed = true
-                NotificationService.shared.uploadNotification(type: .follow, user: cell.notification?.user)
+                NotificationService.shared.uploadNotification(toUser: user, type: .follow)
                 print("✅ DEBUG: User followed")
             }
         }
