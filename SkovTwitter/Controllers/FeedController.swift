@@ -19,7 +19,7 @@ class FeedController: UICollectionViewController {
     }
     
     private var tweets = [Tweet]() {
-        didSet { collectionView.reloadData()  }
+        didSet { collectionView.reloadData() }
     }
     
     // MARK: - Lifecycle
@@ -41,23 +41,32 @@ class FeedController: UICollectionViewController {
     // MARK: - API
     
     func fetchTweets() {
+        collectionView.refreshControl?.beginRefreshing()
         TweetService.shared.fetchTweets { tweets in
-            self.tweets = tweets.reversed()
-            self.checkIfUserLikedTweet(tweets)
+            self.tweets = tweets.sorted(by: { $0.timestamp > $1.timestamp })
+            self.checkIfUserLikedTweet()
             
+            self.collectionView.refreshControl?.endRefreshing()
         }
     }
     
-    func checkIfUserLikedTweet(_ tweet: [Tweet]) {
-        for (index, tweet) in tweets.enumerated() {
+    func checkIfUserLikedTweet() {
+        self.tweets.forEach { tweet in
             TweetService.shared.checkIfUserLikedTweet(tweet) { didLike in
                 guard didLike else { return }
                 
-                self.tweets[index].didLike = true
+                if let index = self.tweets.firstIndex(where: { $0.tweetID == tweet.tweetID}) {
+                    self.tweets[index].didLike = true
+                }
             }
         }
     }
     
+    // MARK: - Selectors
+    
+    @objc func handleRefresh() {
+        fetchTweets()
+    }
     
     // MARK: - Helpers
     
@@ -70,6 +79,10 @@ class FeedController: UICollectionViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.setDimensions(width: 44, height: 44)
         navigationItem.titleView = imageView
+        
+        let refreshControl = UIRefreshControl()
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
     
     func configureLeftBarItem() {

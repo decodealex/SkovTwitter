@@ -25,7 +25,7 @@ struct User {
     
     // MARK: - Lifecycle
     
-    init(uid: String ,dictionary: [String: AnyObject]) {
+    init(uid: String, dictionary: [String: AnyObject]) {
         self.uid = uid
         
         self.fullName = dictionary["fullName"] as? String ?? "N/A"
@@ -33,7 +33,7 @@ struct User {
         self.username = dictionary["username"] as? String ?? "N/A"
         
         if let profileImageURLString = dictionary["profileImageURL"] as? String {
-            guard let url =  URL(string: profileImageURLString) else { return }
+            guard let url = URL(string: profileImageURLString) else { return }
             self.profileImageURL = url
         }
     }

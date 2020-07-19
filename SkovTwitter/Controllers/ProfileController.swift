@@ -176,7 +176,13 @@ extension ProfileController: ProfileHeaderDelegate {
     }
     
     func handleEditProfileFollow(_ header: ProfileHeader) {
-        guard !user.isCurrentUser else { return }
+        
+        if user.isCurrentUser {
+            let controller = EditProfileController(user: user)
+            let nav = UINavigationController(rootViewController: controller)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true, completion: nil)
+        }
         
         if user.isFollowed  {
             UserService.shared.unfollowUser(uid: user.uid) { ref, error in

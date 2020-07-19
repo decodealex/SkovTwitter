@@ -52,7 +52,7 @@ class ProfileHeader: UICollectionReusableView {
         iv.clipsToBounds = true
         iv.backgroundColor = .lightGray
         iv.layer.borderColor = UIColor.white.cgColor
-        iv.layer.borderWidth = 4
+        iv.layer.borderWidth = 3
         
         return iv
     }()
