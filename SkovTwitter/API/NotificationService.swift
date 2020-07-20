@@ -21,7 +21,7 @@ struct NotificationService {
         var values: [String: Any] = ["timestamp": Int(NSDate().timeIntervalSince1970),
                                      "uid": uid,
                                      "type": type.rawValue]
-
+        
         
         if let tweetID = tweetID {
             values["tweetID"] = tweetID
@@ -30,10 +30,8 @@ struct NotificationService {
         REF_NOTIFICATIONS.child(user.uid).childByAutoId().updateChildValues(values)
     }
     
-    func fetchNotifications(completion: @escaping([NotificationModel]) -> Void) {
+    fileprivate func getNotifications(uid: String, completion: @escaping([NotificationModel]) -> Void) {
         var notifications = [NotificationModel]()
-        
-        guard let uid = Auth.auth().currentUser?.uid else { return }
         
         REF_NOTIFICATIONS.child(uid).observe(.childAdded) { snapshot in
             guard let dictionary = snapshot.value as? [String: AnyObject],
@@ -43,6 +41,19 @@ struct NotificationService {
                 let notification = NotificationModel(user: user, dictionary: dictionary)
                 notifications.append(notification)
                 completion(notifications)
+            }
+        }
+    }
+    
+    func fetchNotifications(completion: @escaping([NotificationModel]) -> Void) {
+        let notifications = [NotificationModel]()
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        REF_NOTIFICATIONS.child(uid).observeSingleEvent(of: .value) { snapshot in
+            if !snapshot.exists() {
+                completion(notifications)
+            } else {
+                self.getNotifications(uid: uid, completion: completion)
             }
         }
     }
