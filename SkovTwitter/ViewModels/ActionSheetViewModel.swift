@@ -34,12 +34,6 @@ struct ActionSheetViewModel {
     init(user: User) {
         self.user = user
     }
-    
-    // MARK: - API
-    
-    // MARK: - Selectors
-    
-    // MARK: - Helpers
 }
 
 enum ActionSheetOptions {

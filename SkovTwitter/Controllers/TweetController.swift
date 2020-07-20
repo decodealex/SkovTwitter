@@ -55,8 +55,6 @@ class TweetController: UICollectionViewController {
         }
     }
     
-    // MARK: - Selectors
-    
     // MARK: - Helpers
     
     func configureCollectionView() {
@@ -140,7 +138,8 @@ extension TweetController: TweetHeaderDelegate {
         if tweet.user.isCurrentUser {
             showActionSheet(forUser: tweet.user)
         } else {
-            UserService.shared.checkIfUserIsFollowed(uid: tweet.user.uid) { isFollowed in
+            UserService.shared.checkIfUserIsFollowed(uid: tweet.user.uid) { [weak self] isFollowed in
+                guard let self = self else { return }
                 var user = self.tweet.user
                 user.isFollowed = isFollowed
                 self.showActionSheet(forUser: user)

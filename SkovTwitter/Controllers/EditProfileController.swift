@@ -15,7 +15,7 @@ protocol EditProfileControllerDelegate: class {
 }
 
 class EditProfileController: UITableViewController {
-
+    
     // MARK: - Properties
     
     private let user: User
@@ -50,7 +50,7 @@ class EditProfileController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configureNavigationBar()
         configureTableView()
         configureImagePicker()
@@ -66,19 +66,19 @@ class EditProfileController: UITableViewController {
         
         if !imageChanged && userInfoChanged {
             print("❗️DEBUG: Changed data and not image")
-//            UserService.shared.saveUserData
+            //            UserService.shared.saveUserData
         }
         
         if imageChanged && userInfoChanged {
             print("❗️DEBUG: Changed data and image")
-//            UserService.shared.saveUserData
+            //            UserService.shared.saveUserData
         }
     }
     
     func updateProfileImage() {
         guard let image = selectedImage else { return }
         
-//        UserService.shared.updateProfileImage
+        //        UserService.shared.updateProfileImage
     }
     
     // MARK: - Selectors
@@ -127,7 +127,7 @@ class EditProfileController: UITableViewController {
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
     }
-
+    
 }
 
 extension EditProfileController {
@@ -162,7 +162,8 @@ extension EditProfileController: EditProfileFooterDelegate {
     func handleLogoutTapped() {
         let alert = UIAlertController(title: nil, message: "Are you sure you want to log out?", preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
             print("❗️DEBUG: logout yes")
             self.dismiss(animated: true) {
                 self.delegate?.handleLogout()

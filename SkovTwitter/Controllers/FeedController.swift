@@ -42,7 +42,8 @@ class FeedController: UICollectionViewController {
     
     func fetchTweets() {
         collectionView.refreshControl?.beginRefreshing()
-        TweetService.shared.fetchTweets { tweets in
+        TweetService.shared.fetchTweets { [weak self] tweets in
+            guard let self = self else { return }
             self.tweets = tweets.sorted(by: { $0.timestamp > $1.timestamp })
             self.checkIfUserLikedTweet()
             
@@ -52,7 +53,8 @@ class FeedController: UICollectionViewController {
     
     func checkIfUserLikedTweet() {
         self.tweets.forEach { tweet in
-            TweetService.shared.checkIfUserLikedTweet(tweet) { didLike in
+            TweetService.shared.checkIfUserLikedTweet(tweet) { [weak self] didLike in
+                guard let self = self else { return }
                 guard didLike else { return }
                 
                 if let index = self.tweets.firstIndex(where: { $0.tweetID == tweet.tweetID}) {
@@ -66,6 +68,12 @@ class FeedController: UICollectionViewController {
     
     @objc func handleRefresh() {
         fetchTweets()
+    }
+    
+    @objc func handleNavBarProfileImageTapped() {
+        guard let user = user else { return }
+        let controller = ProfileController(user: user)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     // MARK: - Helpers
@@ -93,6 +101,10 @@ class FeedController: UICollectionViewController {
         profileImageView.layer.cornerRadius = 32/2
         profileImageView.layer.masksToBounds = true
         profileImageView.sd_setImage(with: user.profileImageURL, completed: nil)
+        profileImageView.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleNavBarProfileImageTapped))
+        profileImageView.addGestureRecognizer(tap)
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageView)
     }
@@ -138,8 +150,8 @@ extension FeedController: UICollectionViewDelegateFlowLayout {
 extension FeedController: TweetCellDelegate {
     
     func handleFetchUser(withUsername username: String) {
-        UserService.shared.fetchUser(withUsername: username) { user in
-//            guard let self = self else { return }
+        UserService.shared.fetchUser(withUsername: username) { [weak self] user in
+            guard let self = self else { return }
             let controller = ProfileController(user: user)
             self.navigationController?.pushViewController(controller, animated: true)
         }

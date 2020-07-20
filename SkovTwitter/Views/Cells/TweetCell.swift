@@ -183,7 +183,8 @@ class TweetCell: UICollectionViewCell {
     }
     
     func configureMentionHandler() {
-        captionLabel.handleMentionTap { username in
+        captionLabel.handleMentionTap { [weak self] username in
+            guard let self = self else { return }
             self.delegate?.handleFetchUser(withUsername: username)
         }
     }

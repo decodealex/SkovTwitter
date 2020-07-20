@@ -12,7 +12,6 @@ private let cellReuseIdentifier = "cellReuseIdentifier"
 
 class NotificationsController: UITableViewController {
     
-    
     // MARK: - Properties
     
     private var notifications = [NotificationModel]() {
@@ -51,7 +50,8 @@ class NotificationsController: UITableViewController {
             if case .follow = notification.type {
                 let user = notification.user
                 
-                UserService.shared.checkIfUserIsFollowed(uid: user.uid) { isFollowed in
+                UserService.shared.checkIfUserIsFollowed(uid: user.uid) { [weak self] isFollowed in
+                    guard let self = self else { return }
                     self.notifications[index].user.isFollowed = isFollowed
                 }
             }
@@ -104,7 +104,8 @@ extension NotificationsController {
         let notification = notifications[indexPath.row]
         guard let tweetID = notification.tweetID else { return }
         
-        TweetService.shared.fetchTweet(withTweedID: tweetID) { tweet in
+        TweetService.shared.fetchTweet(withTweedID: tweetID) { [weak self] tweet in
+            guard let self = self else { return }
             let controller = TweetController(tweet: tweet)
             self.navigationController?.pushViewController(controller, animated: true)
         }
@@ -137,6 +138,5 @@ extension NotificationsController: NotificationCellDelegate {
                 print("✅ DEBUG: User followed")
             }
         }
-        
     }
 }

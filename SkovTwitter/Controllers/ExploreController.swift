@@ -40,12 +40,11 @@ class ExploreController: UITableViewController {
         configureSearchController()
     }
     
-    
-    
     // MARK: - API
     
     func fetchUsers() {
-        UserService.shared.fetchUsers { users in
+        UserService.shared.fetchUsers { [weak self] users in
+            guard let self = self else { return }
             self.users = users
         }
     }
@@ -56,11 +55,7 @@ class ExploreController: UITableViewController {
         navigationController?.navigationBar.barStyle = .default
         navigationController?.navigationBar.isHidden = false
     }
-    
-    // MARK: - Selectors
-    
-    // MARK: - API
-    
+
     // MARK: - Selectors
     
     func configureUI() {
@@ -84,7 +79,6 @@ class ExploreController: UITableViewController {
 
 
 // MARK: - TableViewDataSource/Delegate
-
 extension ExploreController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return inSearchMode ? filteredUsers.count : users.count
@@ -110,6 +104,5 @@ extension ExploreController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text?.lowercased() else { return }
         
         filteredUsers = users.filter({ $0.username.contains(searchText) || $0.fullName.lowercased().contains(searchText) })
-        
     }
 }

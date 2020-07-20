@@ -72,39 +72,42 @@ class ProfileController: UICollectionViewController {
     // MARK: - API
     
     func fetchTweets() {
-        TweetService.shared.fetchTweets(forUser: user) { tweets in
+        TweetService.shared.fetchTweets(forUser: user) { [weak self] tweets in
+            guard let self = self else { return }
             self.tweets = tweets
             self.collectionView.reloadData()
         }
     }
     
     func fetchUserReplies() {
-        TweetService.shared.fetchReplies(forUser: user) { replies in
+        TweetService.shared.fetchReplies(forUser: user) { [weak self] replies in
+            guard let self = self else { return }
             self.replies = replies
         }
     }
     
     func fetchLikedTweets() {
-        TweetService.shared.fetchLikes(forUser: user) { tweets in
+        TweetService.shared.fetchLikes(forUser: user) { [weak self] tweets in
+            guard let self = self else { return }
             self.likedTweets = tweets
         }
     }
     
     func checkIfUserIsFollowed() {
-        UserService.shared.checkIfUserIsFollowed(uid: user.uid) { isFollowed in
+        UserService.shared.checkIfUserIsFollowed(uid: user.uid) { [weak self] isFollowed in
+            guard let self = self else { return }
             self.user.isFollowed = isFollowed
             self.collectionView.reloadData()
         }
     }
     
     func fetchUserStats() {
-        UserService.shared.fetchUserStats(uid: user.uid) { stats in
+        UserService.shared.fetchUserStats(uid: user.uid) { [weak self] stats in
+            guard let self = self else { return }
             self.user.stats = stats
             self.collectionView.reloadData()
         }
     }
-    
-    // MARK: - Selectors
     
     // MARK: - Helpers
     
@@ -214,6 +217,8 @@ extension ProfileController: ProfileHeaderDelegate {
     }
 
 }
+
+//MARK: - EditProfileControllerDelegate
 
 extension ProfileController: EditProfileControllerDelegate {
     func handleLogout() {

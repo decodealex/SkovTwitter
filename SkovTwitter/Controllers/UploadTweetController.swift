@@ -108,7 +108,8 @@ class UploadTweetController: UIViewController {
     @objc func handleUploadTweet() {
         guard let caption = captionTextView.text else { return }
         
-        TweetService.shared.uploadTweet(caption: caption, type: config) { (error, ref) in
+        TweetService.shared.uploadTweet(caption: caption, type: config) { [weak self] (error, ref) in
+            guard let self = self else { return }
             if let error = error {
                 print("❗️DEBUG: Failed upload tweet to database. Error is : \(error)")
             }

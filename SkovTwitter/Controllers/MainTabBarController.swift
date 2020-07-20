@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class MainTabBarController: UITabBarController {
-
+    
     // MARK: - Properties
     
     var user: User? {
@@ -43,7 +43,8 @@ class MainTabBarController: UITabBarController {
     
     func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        UserService.shared.fetchUser(uid: uid) { user in
+        UserService.shared.fetchUser(uid: uid) { [weak self] user in
+            guard let self = self else { return }
             self.user = user
         }
     }
@@ -113,5 +114,4 @@ class MainTabBarController: UITabBarController {
         view.backgroundColor = .white
         return nav
     }
-
 }

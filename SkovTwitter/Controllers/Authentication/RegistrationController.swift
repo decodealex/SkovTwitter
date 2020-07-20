@@ -127,7 +127,8 @@ class RegistrationController: UIViewController {
         let credentials = AuthCredentials(email: email, password: password, fullName: fullName,
                                           username: username, profileImage: profileImage)
         
-        AuthService.shared.registerUser(credentials: credentials) { (error, ref) in
+        AuthService.shared.registerUser(credentials: credentials) { [weak self] (error, ref) in
+            guard let self = self else { return }
             print("✅ DEBUG: SignUp successful")
             
             guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow}) else { return }

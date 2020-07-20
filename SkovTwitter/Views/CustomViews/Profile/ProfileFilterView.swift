@@ -12,7 +12,6 @@ private let cellReuseIdentifier = "ProfileFilterCell"
 
 protocol ProfileFilterViewDelegate: class {
     func filterView(_ view: ProfileFilterView, didSelect index: Int)
-    
 }
 
 class ProfileFilterView: UIView {

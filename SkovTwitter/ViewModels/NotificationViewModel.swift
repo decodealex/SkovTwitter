@@ -65,11 +65,4 @@ struct NotificationViewModel {
         self.type = notification.type
         self.user = notification.user
     }
-    
-    // MARK: - API
-    
-    // MARK: - Selectors
-    
-    // MARK: - Helpers
-    
 }

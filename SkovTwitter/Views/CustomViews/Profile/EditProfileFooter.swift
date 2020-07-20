@@ -41,13 +41,10 @@ class EditProfileFooter: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - API
     
     // MARK: - Selectors
     
     @objc func handleLogout() {
         delegate?.handleLogoutTapped()
     }
-    
-    // MARK: - Helpers
 }

@@ -25,7 +25,6 @@ enum ProfileFilterOptions: Int, CaseIterable {
     }
 }
 
-
 struct ProfileHeaderViewModel {
     
     // MARK: - Properties
@@ -65,9 +64,6 @@ struct ProfileHeaderViewModel {
         
         self.usernameText = "@\(user.username)"
     }
-    
-    // MARK: - API
-    
     
     // MARK: - Helpers
     

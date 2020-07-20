@@ -15,7 +15,7 @@ enum UploadTweetConfiguration {
 
 struct UploadTweetViewModel {
     
-        // MARK: - Properties
+    // MARK: - Properties
     
     let actionButtonTitle: String
     let placeholderText: String
@@ -38,10 +38,4 @@ struct UploadTweetViewModel {
             replyText = "Replying to @\(tweet.user.username)"
         }
     }
-    
-    // MARK: - API
-    
-    // MARK: - Selectors
-    
-    // MARK: - Helpers
 }
